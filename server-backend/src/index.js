@@ -10,6 +10,7 @@ let config = {
   port: process.env.DATABASE_PORT,
   ssl: true,
 };
+
 //boiler plate express code which allows us to run our web server
 const app = express();
 const port = 3000;
