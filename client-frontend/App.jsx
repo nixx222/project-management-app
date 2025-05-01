@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
+import AddFeedback from './pages/AddFeedback';
 
 function App() {
   return (
@@ -13,11 +14,15 @@ function App() {
           <li>
             <Link to="/about">About</Link>
           </li>
+          <li>
+            <Link to="/add-feedback">Add Feedback</Link>
+          </li>
         </ul>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/add-feedback" element={<AddFeedback />} />
       </Routes>
     </div>
   );

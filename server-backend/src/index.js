@@ -25,3 +25,19 @@ app.use(express.json());
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+//helper functions 
+
+async function submitFeedback(obj) {
+    const client = new Client(config);
+    await client.connect();
+    await client.query(`
+    INSERT INTO feedback (title, category, description)
+    VALUES ('${obj.})`)
+}
+
+//api endpoints
+
+app.post("/submit-feedback", async (req, res) => {
+    await submitFeedback 
+})
