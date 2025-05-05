@@ -21,7 +21,7 @@ const FeedbackList = () =>  {
     const [fetchedFeedback, setFetchedFeedback] = useState([]); //What goes inside the parenthesis here? An array, aka a list of feedback items.(title, description, category)
 
     const getFeedback = async () => { //async because the timing needs to be just right
-        const response = await fetch("/api/feedback"); //asigning the variable response to the fetch method, using the "address" aka endpoint of /feedback 
+        const response = await fetch("/feedback"); //asigning the variable response to the fetch method, using the "address" aka endpoint of /feedback 
         //**CHECK TO SEE IF THIS IS THE RIGHT FETCH ADDRESS OR IF I NEED THE LOCALHOST3000 ONE? I THINK I DON'T NEED IT SINCE I CREATED THE VITE.CONFIG (which currently has the wrong target)
         const data = await response.json();
         setFetchedFeedback(data); //using the setFetchedFeedback useState and putting in the prop of "data", which is the variable that contains the response from the backend database. ie: the title, description, and category that was inputted by past users and saved in pgAdmin on the tables we created.

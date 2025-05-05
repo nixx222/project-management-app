@@ -6,7 +6,7 @@ const { Client } = pg;
 
 
 let config = {
-  user: process.env.USER,
+  user: process.env.DB_USER,
   host: process.env.HOST,
   database: process.env.DATABASE,
   password: process.env.PASSWORD,
