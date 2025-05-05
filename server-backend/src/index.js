@@ -74,6 +74,7 @@ app.post("/submit-feedback", async (req, res) => {
 app.get("/feedback", async (req, res) => {
   try {
     const feedbackList = await getAllFeedback();
+    console.log(feedbackList); // <-- This is the debug line
     res.status(200).json(feedbackList);
   } catch (error) {
     console.error("Error fetching feedback:", error);

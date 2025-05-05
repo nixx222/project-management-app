@@ -1,6 +1,7 @@
 // pages/Home.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FeedbackList from '../components/FeedbackList'; // ← step 1
 import '../App.css';
 
 function Home() {
@@ -10,6 +11,7 @@ function Home() {
         <img src="/assets/Magnifying-glass.svg/" alt="cartoon person with magnifying glass" className='home-page-image' 
         />
         <p className="home-page-text">There is no feedback yet.</p>
+        <FeedbackList />
         <Link to='/add-feedback' className='add-feedback-btn'>
           + Add Feedback 
         </Link>
