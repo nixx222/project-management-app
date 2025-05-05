@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import './app.css';
+import '../App.css';
 
 // Goal: Create a page where a user can submit feedback that gets stored in my SQL database via an API.
 // That means I need to:
@@ -26,7 +26,7 @@ export default function AddFeedback() {
         };
 
         // Send the data to the backend
-        await fetch("http://localhost:5000/api/feedback", {
+        await fetch("/api/submit-feedback", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

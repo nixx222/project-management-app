@@ -38,11 +38,12 @@ X Test your endpoints using Postman (Optional) Ex: If I'm submitting the users i
 
 Frontend 4/24/25
 X (Nothing in it currently.) Create .gitignore for FE
-- Refactor my ad-feedback HTML file to a JSX component, put it in my AddFeedback JSX component page
+X Refactor my ad-feedback HTML file to a JSX component, put it in my AddFeedback JSX component page
 - Display the api call with feedback on to individual feedback cards
 - Create the indivual card component
 - Create filter buttons
 - Create the filter Logic
+- Update the vite.config with the correct target
 
 Styling 4/24/25
 - Responsive for Tablet, Mobile, Desktop
@@ -57,6 +58,12 @@ Deployment 4/24/25
 - Front end to Netlify
 - Databse + API on Render
 - Make sure the deployment works after coding. 
+
+Things to update when switching from localhost to render:
+- index.js SSL: true (Change to true); check if port needs to be: port: process.env.DATABASE_PORT instead of Number(process.env...)
+- vite.config: change the target from localhost to render 
+- .env: change back to HOST=dpg-d04idkk9c44c739ma6q0-a.oregon-postgres.render.com ; DB_USER to USER=
+- index.js user:process.env.DB_USER
 
 
 Reprogramming My Mind Through Code: How I’m Using Logic to Heal From Trauma

@@ -1,15 +1,20 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express"; //external module for using express
 import pg from "pg";
 const { Client } = pg;
+
 
 let config = {
   user: process.env.USER,
   host: process.env.HOST,
   database: process.env.DATABASE,
   password: process.env.PASSWORD,
-  port: process.env.DATABASE_PORT,
-  ssl: true,
+  port: Number(process.env.DATABASE_PORT),
+  ssl: true, //change to true when connecting to Render
 };
+
+console.log("Loaded config:", config);
 
 //boiler plate express code which allows us to run our web server
 const app = express();
@@ -28,16 +33,50 @@ app.listen(port, () => {
 
 //helper functions 
 
-async function submitFeedback(obj) {
+async function submitFeedback(feedback) {
+  console.log("Submitting feedback:", feedback); // ✅ logs before anything else
     const client = new Client(config);
     await client.connect();
     await client.query(`
     INSERT INTO feedback (title, category, description)
-    VALUES ('${obj.})`)
+    VALUES ($1, $2, $3)`,
+    [feedback.title, feedback.category, feedback.description]
+);
+await client.end();
+}
+
+async function getAllFeedback() {
+  const client = new Client(config);
+  await client.connect();
+  
+  const result = await client.query("SELECT * FROM feedback");
+
+  await client.end();
+  return result.rows; //this returns an array of feedback objects
 }
 
 //api endpoints
 
 app.post("/submit-feedback", async (req, res) => {
-    await submitFeedback 
-})
+  try {
+    await submitFeedback(req.body);
+    res.status(200).send("Feedback received!");
+  } catch (error) {
+    console.error("Error submitting feedback:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+//What Happens When You Hit /feedback in Your Browser/Postman:
+  //-It runs getAllFeedback()
+  //-It fetches all rows from the database
+  //-It returns them as JSON to the frontend
+
+app.get("/feedback", async (req, res) => {
+  try {
+    const feedbackList = await getAllFeedback();
+    res.status(200).json(feedbackList);
+  } catch (error) {
+    console.error("Error fetching feedback:", error);
+    res.status(500).send("Failed to fetch feedback");
+  }
+});
