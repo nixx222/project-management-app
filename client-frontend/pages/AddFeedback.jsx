@@ -26,7 +26,7 @@ export default function AddFeedback() {
         };
 
         // Send the data to the backend
-        await fetch("https://project-management-app-cp47.onrender.com/submit-feedback", {
+        await fetch("/api/submit-feedback", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
