@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': { 
-        target:'https://project-management-app-cp47.onrender.com',//replace with 'https://countries-api-project.onrender.com' when shifting to render. 
+        target:'https://project-management-app-cp47.onrender.com',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '')
